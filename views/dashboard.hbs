@@ -1,0 +1,29 @@
+<body style="background-image: url(images/HOMEBG.jpg); background-size: cover; background-repeat:no-repeat">
+
+<h4 style="margin-left: 350px; color:rgb(255, 211, 211)">Welcome {{name}} !</h4>
+<p style="margin-left: 350px; color:rgb(253, 224, 196)">your invitations</p>
+{{#if invites}}
+        {{#each invites}}
+        
+        <br>
+            <a href="/invites/{{_id}}">{{title}}</a>
+            
+            <div style=" color:rgb(197, 197, 197)">{{createdAt}}</div>
+            <br>
+            
+            <a href="/invites/edit/{{_id}}" class="btn btn-float"> edit invitation</a>
+                <br>
+                <form action="/invites/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn red" style="margin-top:5px">
+                        delete invitation
+                    </button>
+                </form>
+            
+        </br>
+        {{/each}}
+    </body>
+
+{{else}}
+<p style="margin-left: 350px; color:rgb(177, 175, 175)">You have not created any invitations</p>
+{{/if}}
