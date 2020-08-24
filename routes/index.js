@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {ensureAuth, ensureUser} = require('../middleware/authentication')
 const User= require('../models/User');
-const Invite = require('../models/invites');
+const Comment = require('../models/comments');
 
 //login google
 router.get('/', ensureUser, (req, res) => {
@@ -15,7 +15,7 @@ router.get('/', ensureUser, (req, res) => {
 //user profile
 router.get('/profile',  ensureAuth, async (req, res) => {
   try {
-    const invites = await User.find({ user: req.user.id }).lean()
+    const comments = await User.find({ user: req.user.id }).lean()
     res.render('profile', {
       name: req.user.firstName,
       lastname: req.user.lastName,
@@ -29,26 +29,17 @@ router.get('/profile',  ensureAuth, async (req, res) => {
 
 //blank
 router.get('/addblank',  ensureAuth, async (req, res) => {
-  res.render('invites/addblank')
+  res.render('comments/addblank')
 }); 
 
-//wedding template
-router.get('/wedding',  ensureAuth, async (req, res) => {
-  res.render('invites/weddings')
-}); 
-
-//birthday template
-router.get('/birthday',  ensureAuth, async (req, res) => {
-  res.render('invites/birthday')
-}); 
 
 //go to dashboard after authentiactn
 router.get('/dashboard', ensureAuth, async (req, res) => {
   try {
-    const invites = await Invite.find({ user: req.user.id }).lean()
+    const comments = await Comment.find({ user: req.user.id }).lean()
     res.render('dashboard', {
       name: req.user.firstName,
-      invites,
+      comments,
     })
   } catch (error) {
     console.error(error)

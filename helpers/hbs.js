@@ -18,12 +18,12 @@ module.exports = {
   },
 
   //edit
-  editIcon: function (invUser, loggedUser, invId, float = true) {
-    if (invUser._id.toString() == loggedUser._id.toString()) {
+  editIcon: function (user, loggedUser, commId, float = true) {
+    if (user._id.toString() == loggedUser._id.toString()) {
       if (float) {
-        return `<a href="/invites/edit/${invId}" class="btn">edit</i></a>`
+        return `<a href="/comments/edit/${commId}" class="btn">edit</i></a>`
       } else {
-        return `<a href="/invites/edit/${invId}">edit</a>`
+        return `<a href="/comments/edit/${commId}">edit</a>`
       }
     } else {
       return ''

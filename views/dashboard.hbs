@@ -1,22 +1,20 @@
 <body style="background-image: url(images/HOMEBG.jpg); background-size: cover; background-repeat:no-repeat">
 
-<h4 style="margin-left: 350px; color:rgb(255, 211, 211)">Welcome {{name}} !</h4>
-<p style="margin-left: 350px; color:rgb(253, 224, 196)">your invitations</p>
-{{#if invites}}
-        {{#each invites}}
+<h4 style="margin-left: 50px; color:rgb(255, 211, 211)">Welcome {{name}} !</h4>
+{{#if comments}}
+        {{#each comments}}
         
         <br>
-            <a href="/invites/{{_id}}">{{title}}</a>
-            
+            <p style='text-decoration:none; font-size:25px; padding-bottom:5px; color:white'>{{title}}</p>
             <div style=" color:rgb(197, 197, 197)">{{createdAt}}</div>
             <br>
             
-            <a href="/invites/edit/{{_id}}" class="btn btn-float"> edit invitation</a>
+            <a href="/comments/edit/{{_id}}" class="btn btn-float" style="width: min-content;"> edit comment</a>
                 <br>
-                <form action="/invites/{{_id}}" method="POST" id="delete-form">
-                    <input type="hidden" name="_method" value="DELETE">
+                <form action="/comments/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE" >
                     <button type="submit" class="btn red" style="margin-top:5px">
-                        delete invitation
+                        delete comment
                     </button>
                 </form>
             
@@ -25,5 +23,5 @@
     </body>
 
 {{else}}
-<p style="margin-left: 350px; color:rgb(177, 175, 175)">You have not created any invitations</p>
+<p style="margin-left: 50px; color:rgb(139, 139, 139)">You have not given feedback yet :(</p>
 {{/if}}
